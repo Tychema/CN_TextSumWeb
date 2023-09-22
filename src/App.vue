@@ -1,28 +1,30 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+	<!-- 指定组件的呈现位置 -->
+    <router-view></router-view>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+// import HelloWorld from './components/HelloWorld.vue'
+ 
 export default {
   name: 'App',
+  // 路由组件是不需要做引入的，而是在router文件夹下的文件中做配置  一般来说一般组件和路由组件是要放在不同的文件中配置的
   components: {
-    HelloWorld
+	
+  },
+  data() {
+    return {
+      activeIndex: '1',
+      activeIndex2: '1'
+    };
+  },
+  methods: {
+    handleSelect(key, keyPath) {
+      console.log(key, keyPath);
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
