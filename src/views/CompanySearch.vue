@@ -48,7 +48,7 @@
 <script>
 // import ProIntroduction from "./ProIntroduction.vue"
 // import ProTable from "./ProTable.vue"
-import axios from 'axios'; // 导入 Axios
+//import axios from 'axios'; // 导入 Axios
 
 export default{
   // eslint-disable-next-line vue/multi-word-component-names

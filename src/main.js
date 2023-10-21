@@ -26,7 +26,7 @@ Vue.prototype.$http = axios
 Vue.use(ElementUI);
 
 Vue.config.productionTip = false
-
+// axios.defaults.headers.common['token']=""
 new Vue({
   render: h => h(App),
   // 标准路由器引入

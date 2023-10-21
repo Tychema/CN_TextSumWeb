@@ -5,7 +5,9 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start": "node index.js",
+    "server": "nodemon index.js --ignore client"
   },
   "dependencies": {
     "axios": "^1.5.1",
@@ -44,17 +46,6 @@
       "no-mixed-spaces-and-tabs": 0
     }
   },
-  "devServer": {
-  "proxy": {
-    "/api": {
-      "target": "http://127.0.0.1:8000",
-      "changeOrigin": true,
-      "pathRewrite": {
-        "/api": "http://127.0.0.1:8000"
-      }
-    }
-  }
-},
   "browserslist": [
     "> 1%",
     "last 2 versions",

@@ -4,7 +4,15 @@
         <el-row>
           <el-col style="width: 32%;margin-right: 20px">
             <el-card style="height: 560px">
-
+              <el-table
+                  :data="tableData1"
+                  style="width: 100%"
+              >
+                <el-table-column
+                    prop="title"
+                    label="标题"
+                ></el-table-column>
+              </el-table>
 
             </el-card>
           </el-col>
@@ -26,7 +34,9 @@
 <script>
 // import ProIntroduction from "./ProIntroduction.vue"
 // import ProTable from "./ProTable.vue"
-import axios from 'axios'; // 导入 Axios
+//import {getDataList} from "@/api/dataSet"; // 导入 Axios
+
+import axios from "axios";
 
 export default{
   // eslint-disable-next-line vue/multi-word-component-names
@@ -40,28 +50,50 @@ export default{
       value: 1,
       input: " ",
       sum_result: '', // 用于存储请求返回的结果
+      tableData1: [], // 用于存储表格1数据
+      tableData2: [], // 用于存储表格2数据
+      tableData3: [] // 用于存储表格3数据
 
     }
   },
+  mounted() {
+    this.fetchData(); // 在组件挂载后执行数据请求
+  },
   methods: {
-    formatTooltip(val) {
-      return val / 100;
-    },
-    fetchData() {
-      // 发送 POST 请求到 127.0.0.1:8080，传递输入数据
-      var url='/TextSummarization'
-      var result=axios.post(url, { "txt": this.input })
+    async fetchData() {
+      const url = 'http://localhost:8000/contextCollect/getContextCollectById?userid=1&page=0';
+      const url2 = 'http://localhost:8000/contextCollect/getText';
+      axios.get(url2)
           .then(response => {
-            // 请求成功，将返回的数据存储到 result 中
-            this.result = response.data;
+            // 从响应中提取标题数据
+            var tableData1 = response.data.map(item => ({title: item.title}));
+            this.tableData1 = tableData1
+            console.log(tableData1)
           })
           .catch(error => {
-            // 请求失败，可以处理错误情况
-            console.error('请求失败:', error);
+            console.error('请求出错:', error);
           });
-      console.log(result)
+      console.log(url)
+
     },
-  },
+    formatTooltip(val) {
+      return val / 100;
+    }
+    // fetchData() {
+    //   // 发送 POST 请求到 127.0.0.1:8080，传递输入数据
+    //   var url='/TextSummarization'
+    //   var result=axios.post(url, { "txt": this.input })
+    //       .then(response => {
+    //         // 请求成功，将返回的数据存储到 result 中
+    //         this.result = response.data;
+    //       })
+    //       .catch(error => {
+    //         // 请求失败，可以处理错误情况
+    //         console.error('请求失败:', error);
+    //       });
+    //   console.log(result)
+    // },
+  }
 }
 
 </script>

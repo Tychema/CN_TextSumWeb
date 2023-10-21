@@ -1,10 +1,10 @@
 import {request} from './request'
 
-export function getDataList(condition) {
+export function getDataList(userid,page) {
   return request({
-    url: 'dataset/list',
-    method: 'get',
-    params: condition
+    url: '/contextCollect/getContextCollectById',
+    method: 'post',
+    params: userid,page
   })
 }
 
