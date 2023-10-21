@@ -8,7 +8,7 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^1.2.5",
+    "axios": "^1.5.1",
     "core-js": "^3.8.3",
     "element-ui": "^2.15.13",
     "pubsub-js": "^1.9.4",
@@ -41,12 +41,24 @@
       "parser": "@babel/eslint-parser"
     },
     "rules": {
-      "no-mixed-spaces-and-tabs":0
+      "no-mixed-spaces-and-tabs": 0
     }
   },
+  "devServer": {
+  "proxy": {
+    "/api": {
+      "target": "http://127.0.0.1:8000",
+      "changeOrigin": true,
+      "pathRewrite": {
+        "/api": "http://127.0.0.1:8000"
+      }
+    }
+  }
+},
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
   ]
+
 }

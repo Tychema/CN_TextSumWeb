@@ -2,15 +2,22 @@
   <el-container>
     <el-header>
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-              <el-menu-item index="1" v-on:click="toIndex">首页</el-menu-item>
+              <el-menu-item index="1" v-on:click="toAllNews">首页</el-menu-item>
+<!--                <i class="el-icon-user" ></i>-->
+                <div class="block" style="float: right; margin-top: 0px; margin-right: 15px;height: 60px"><el-avatar :size="35" :src="circleUrl" style="margin-top: 10px"></el-avatar></div>
             </el-menu>
     </el-header>
     <el-container>
-      <el-aside width="200px">
-        <el-menu :default-active="activeMenu" class="el-menu-vertical-demo" @select="handleMenuSelect">
-          <el-menu-item index="dashboard">文本摘要</el-menu-item>
-          <el-menu-item index="dashboard">摘要历史</el-menu-item>
-          <el-menu-item index="dashboard">个人信息</el-menu-item>
+      <el-aside width="150px">
+        <el-menu class="el-menu-vertical-demo" >
+<!--        <el-menu class="el-menu-vertical-demo" @select="handleMenuSelect">-->
+<!--        <el-menu :default-active="activeMenu" class="el-menu-vertical-demo" @select="handleMenuSelect">-->
+          <el-menu-item index="AllNews" v-on:click="toAllNews">所有新闻</el-menu-item>
+          <el-menu-item index="CompanySearch" v-on:click="toCompanySearch">公司搜索</el-menu-item>
+          <el-menu-item index="PointNews" v-on:click="toPointNews">关注的新闻</el-menu-item>
+          <el-menu-item index="CollectionNews" v-on:click="toCollectionNews">收藏新闻</el-menu-item>
+          <el-menu-item index="History" v-on:click="toHistory">历史记录</el-menu-item>
+          <el-menu-item index="TextSummary" v-on:click="toTextSummary">文本摘要</el-menu-item>
           <!-- 添加更多菜单项 -->
         </el-menu>
       </el-aside>
@@ -74,53 +81,48 @@ export default {
   data() {
     return {
       activeIndex: '1',
-      activeIndex2: '1'
+      activeIndex2: '1',
+      circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
+      squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
+      sizeList: ["large", "medium", "small"]
     };
   },
   methods: {
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
     },
-    toIndex() {
-      this.$router.push('/Index')
+    toCompanySearch() {
+      this.$router.push('/CompanySearch')
     },
-    toSQ() {
-      this.$router.push('/SurveyQuadrat/SurveyQuadratOne')
+    toAllNews() {
+      this.$router.push('/AllNews')
     },
-    toSurveyDownload() {
-      this.$router.push('/SurveyQuadrat/SurveyQuadratTwo')
+    toPointNews() {
+      this.$router.push('/PointNews')
     },
-    toEcosystemDownload(){
-      this.$router.push('/EcoSystem/EcoSystemTwo')
+    toCollectionNews() {
+      this.$router.push('/CollectionNews')
     },
-    toEcosystemScan(){
-      this.$router.push('/EcoSystem/EcoSystemOne')
+    toHistory() {
+      this.$router.push('/History')
     },
-    toPictureOne(){
-      this.$router.push('/PictureBank/PictureBankOne')
+    toTextSummary() {
+      this.$router.push('/TextSummary')
     },
-    toPictureTwo(){
-      this.$router.push('/PictureBank/PictureBankTwo')
-    },
-    toquillEditor(){
-      this.$router.push('/QuillEditor')
-    },
-    toVegetation(){
-      this.$router.push('/Vegetation')
-    },
-    toSoilBank(){
-      // 这里这种配置是错误的，因为是要直接到达页面
-      // this.$router.push('/SoilBank')
-      // ok,反复点击导致部分页面空置的问题解决了
-      // 这里设置了，就不要在SoilBank中设置，重复设置会出问题
-      this.$router.push('/SoilBank/SoilBankOne')
-    },
-    toSpecimen(){
-      this.$router.push('/Specimen')
-    }
+
+    // toSoilBank(){
+    //   // 这里这种配置是错误的，因为是要直接到达页面
+    //   // this.$router.push('/SoilBank')
+    //   // ok,反复点击导致部分页面空置的问题解决了
+    //   // 这里设置了，就不要在SoilBank中设置，重复设置会出问题
+    //   this.$router.push('/SoilBank/SoilBankOne')
+    // },
+    // toSpecimen(){
+    //   this.$router.push('/Specimen')
+    // }
   },
   mounted() {
-    this.$router.push('/Index')
+    this.$router.push('/AllNews')
   }
 }
 </script>

@@ -18,93 +18,47 @@ export default new Router({
 			children:[
 				{
 					// 子路由不加斜杠   这里同时使用了命名路由的功能
-					name: "Index",
-					path: "Index",
-					component: () => import("../views/index/Index.vue"),
+					name: "AllNews",
+					path: "AllNews",
+					component: () => import("../views/AllNews.vue"),
 				},
 				{
-					name: "SurveyQuadrat",
-					path: "SurveyQuadrat",
-					component: () => import("../views/survey/SurveyQuadrat.vue"),
-					children:[
-						{
-							name: "SurveyQuadratOne",
-							path: "SurveyQuadratOne",
-							component: () => import("../views/survey/SurveyQuadratOne.vue"),
-						},
-						{
-							name: "SurveyQuadratTwo",
-							path: "SurveyQuadratTwo",
-							component: () => import("../views/survey/SurveyQuadratTwo.vue"),
-						},
-					]
+					// 子路由不加斜杠   这里同时使用了命名路由的功能
+					name: "CompanySearch",
+					path: "CompanySearch",
+					component: () => import("../views/CompanySearch.vue"),
 				},
 				{
-					name: "EcoSystem",
-					path: "EcoSystem",
-					component: () => import("../views/ecosystem/EcoSystem.vue"),
-					children:[
-						{
-							name: "EcoSystemOne",
-							path: "EcoSystemOne",
-							component: () => import("../views/ecosystem/EcoSystemOne.vue"),
-						},
-						{
-							name: "EcoSystemTwo",
-							path: "EcoSystemTwo",
-							component: () => import("../views/ecosystem/EcoSystemTwo.vue"),
-						},
-					]
+					// 子路由不加斜杠   这里同时使用了命名路由的功能
+					name: "PointNews",
+					path: "PointNews",
+					component: () => import("../views/PointNews"),
 				},
 				{
-					name: "QuillEditor",
-					path: "QuillEditor",
-					component: () => import("../views/quill/QuillEditor.vue"),
+					// 子路由不加斜杠   这里同时使用了命名路由的功能
+					name: "CollectionNews",
+					path: "CollectionNews",
+					component: () => import("../views/CollectionNews.vue"),
 				},
 				{
-					name: "Vegetation",
-					path: "Vegetation",
-					component: () => import("../views/vegetation/Vegetation.vue"),
+					// 子路由不加斜杠   这里同时使用了命名路由的功能
+					name: "History",
+					path: "History",
+					component: () => import("../views/History.vue"),
 				},
 				{
-					name: "Specimen",
-					path: "Specimen",
-					component: () => import("../views/specimen/Specimen.vue"),
+					// 子路由不加斜杠   这里同时使用了命名路由的功能
+					name: "TextSummary",
+					path: "TextSummary",
+					component: () => import("../views/TextSummary.vue"),
 				},
 				{
-					name: "PictureBank",
-					path: "PictureBank",
-					component: () => import("../views/picture/PictureBank.vue"),
-					children:[
-						{
-							name: "PictureBankOne",
-							path: "PictureBankOne",
-							component: () => import("../views/picture/PictureBankOne.vue"),
-						},
-						{
-							name: "PictureBankTwo",
-							path: "PictureBankTwo",
-							component: () => import("../views/picture/PictureBankTwo.vue"),
-						},
-					]
+					// 子路由不加斜杠   这里同时使用了命名路由的功能
+					name: "index",
+					path: "index",
+					component: () => import("../views/Index.vue"),
 				},
-				{
-					name: "SoilBank",
-					path: "SoilBank",
-					component: () => import("../views/soil/SoilBank.vue"),
-					children:[
-						{
-							name: "SoilBankOne",
-							path: "SoilBankOne",
-							component: () => import("../views/soil/SoilBankOne.vue"),
-						},
-						{
-							name: "SoilBankTwo",
-							path: "SoilBankTwo",
-							component: () => import("../views/soil/SoilBankTwo.vue"),
-						},
-					]
-				},
+
 			]
 		},
 	]
