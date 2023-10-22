@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card style="height: 660px">
+    <el-card style="height: 800px">
       <el-col>
         <el-row style="margin-bottom: 20px">
           <el-row type="flex" justify="center">
@@ -18,24 +18,27 @@
               </el-input>
             </el-col>
             <el-col>
-              <el-card style="width: 300px;width: 20px"></el-card>
+              <el-card style="height: 40px;width: 400px"> </el-card>
+            </el-col>
+            <el-col style="height: 40px;width: 200px">
+              <el-button style="margin: 0px" class="button" type="primary" icon="el-icon-star-off" circle></el-button>
             </el-col>
           </el-row>
         </el-row>
         <el-row>
           <el-col style="width: 32%;margin-right: 20px">
-            <el-card style="height: 560px">
+            <el-card style="height: 700px">
 
 
             </el-card>
           </el-col>
           <el-col style="width: 32%;margin-right: 20px">
-            <el-card style="height: 560px">
+            <el-card style="height: 700px">
 
             </el-card>
           </el-col>
           <el-col style="width: 33%">
-            <el-card style="height: 560px">
+            <el-card style="height: 700px">
 
             </el-card>
           </el-col>
@@ -82,6 +85,11 @@ export default{
 </script>
 
 <style>
+
+.button{
+  margin-left: 800px;
+  ;
+}
 .rounded-input {
   width: 95%;
   border-radius: 100px; /* 添加圆角样式 */
@@ -102,3 +110,4 @@ export default{
   margin-bottom: 10px;
 }
 </style>
+

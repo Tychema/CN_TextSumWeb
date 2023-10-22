@@ -4,6 +4,30 @@ module.exports = defineConfig({
   lintOnSave: false ,
   // 关闭语法检查
 })
+
+module.exports = {
+  lintOnSave: false, //是否开启eslint保存检测
+  runtimeCompiler: true,
+  devServer: {
+    open: true, //配置自动启动浏览器
+    host: "localhost",
+    https: false,
+    port: 8001,
+    // 配置跨域-请求后端的接口
+    proxy: {
+      // "/api": {
+      //   target: "http://172.20.10.3:80", //对应自己的接口
+      //   changeOrigin: true,
+      //   ws: true,
+      //   pathRewrite: {
+      //     "^/api": ""
+      //   }
+      // }
+    }
+  }
+}
+
+
 // module.exports = {
 //   devServer:{
 //     proxy:{

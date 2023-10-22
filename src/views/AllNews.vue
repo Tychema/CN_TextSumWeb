@@ -4,16 +4,33 @@
         <el-row>
           <el-col style="width: 32%;margin-right: 20px">
             <el-card style="height: 560px">
-              <el-table
-                  :data="tableData1"
-                  style="width: 100%"
-              >
-                <el-table-column
-                    prop="title"
-                    label="标题"
-                ></el-table-column>
-              </el-table>
-
+<!--              <el-table-->
+<!--                  :data="tableData1"-->
+<!--                  style="width: 100%"-->
+<!--              >-->
+<!--                <el-table-column-->
+<!--                    prop="title"-->
+<!--                    label="标题"-->
+<!--                ></el-table-column>-->
+<!--              </el-table>-->
+              <div>
+                <el-table
+                    :data="tableData1"
+                    style="width: 100%"
+                    @row-click="handleRowClick"
+                >
+                  <el-table-column prop="title" label="Title"></el-table-column>
+                  <el-table-column prop="datetime" label="Date"></el-table-column>
+                </el-table>
+                <el-pagination
+                    background
+                    layout="prev, pager, next"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage"
+                    :page-size="pageSize"
+                    :total="totalNews"
+                ></el-pagination>
+              </div>
             </el-card>
           </el-col>
           <el-col style="width: 32%;margin-right: 20px">
@@ -52,7 +69,10 @@ export default{
       sum_result: '', // 用于存储请求返回的结果
       tableData1: [], // 用于存储表格1数据
       tableData2: [], // 用于存储表格2数据
-      tableData3: [] // 用于存储表格3数据
+      tableData3: [], // 用于存储表格3数据
+      currentpage:1,
+      pageSize: 5, // 每页显示的新闻数量
+      totalNews: 50,
 
     }
   },
@@ -61,20 +81,27 @@ export default{
   },
   methods: {
     async fetchData() {
-      const url = 'http://localhost:8000/contextCollect/getContextCollectById?userid=1&page=0';
-      const url2 = 'http://localhost:8000/contextCollect/getText';
+      //const url = 'http://localhost:8000/contextCollect/getContextCollectById?userid=1&page=0';
+      const url2 = 'http://localhost:8000/news/getAllNews';
       axios.get(url2)
           .then(response => {
             // 从响应中提取标题数据
-            var tableData1 = response.data.map(item => ({title: item.title}));
+            var tableData1 = response.data.map(item => ({title: item.title,datetime:item.datetime,url:item.url}));
             this.tableData1 = tableData1
+            this.totalNews = this.tableData1.length;
             console.log(tableData1)
           })
           .catch(error => {
             console.error('请求出错:', error);
           });
-      console.log(url)
+      console.log(url2)
 
+    },handleCurrentChange(page) {
+      this.currentPage = page;
+    },
+    handleRowClick(row) {
+      // 处理点击标题跳转到 URL
+      window.open(row.url, this.tableData1.url);
     },
     formatTooltip(val) {
       return val / 100;
