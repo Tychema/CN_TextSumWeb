@@ -18,7 +18,7 @@
               </el-input>
             </el-col>
             <el-col>
-              <el-card style="height: 40px;width: 400px"> </el-card>
+              <el-card style="height: 40px;width: 400px"></el-card>
             </el-col>
             <el-col style="height: 40px;width: 200px">
               <el-button style="margin: 0px" class="button" type="primary" icon="el-icon-star-off" circle></el-button>
@@ -28,18 +28,72 @@
         <el-row>
           <el-col style="width: 32%;margin-right: 20px">
             <el-card style="height: 700px">
-
+              <div>
+                <el-table
+                    :data="showData1"
+                    style="width: 100%"
+                    @row-click="handleRowClick"
+                >
+                  <el-table-column prop="title" label="Positive News"></el-table-column>
+                  <el-table-column prop="datetime" label="Date" :width="100"></el-table-column>
+                </el-table>
+                <el-pagination
+                    background
+                    layout="prev, pager, next"
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange1"
+                    :current-page="currentPage1"
+                    :page-size="pageSize"
+                    :total="totalNews1"
+                ></el-pagination>
+              </div>
 
             </el-card>
           </el-col>
           <el-col style="width: 32%;margin-right: 20px">
             <el-card style="height: 700px">
-
+              <div>
+                <el-table
+                    :data="showData1"
+                    style="width: 100%"
+                    @row-click="handleRowClick"
+                >
+                  <el-table-column prop="title" label="Positive News"></el-table-column>
+                  <el-table-column prop="datetime" label="Date" :width="100"></el-table-column>
+                </el-table>
+                <el-pagination
+                    background
+                    layout="prev, pager, next"
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange1"
+                    :current-page="currentPage1"
+                    :page-size="pageSize"
+                    :total="totalNews1"
+                ></el-pagination>
+              </div>
             </el-card>
           </el-col>
           <el-col style="width: 33%">
             <el-card style="height: 700px">
-
+              <div>
+                <el-table
+                    :data="showData1"
+                    style="width: 100%"
+                    @row-click="handleRowClick"
+                >
+                  <el-table-column prop="title" label="Positive News"></el-table-column>
+                  <el-table-column prop="datetime" label="Date" :width="100"></el-table-column>
+                </el-table>
+                <el-pagination
+                    background
+                    layout="prev, pager, next"
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange1"
+                    :current-page="currentPage1"
+                    :page-size="pageSize"
+                    :total="totalNews1"
+                ></el-pagination>
+              </div>
             </el-card>
           </el-col>
         </el-row>
