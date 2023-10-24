@@ -1,6 +1,23 @@
 <template>
   <div>
+    <el-card style="height: 800px">
+      <el-row>
+<!--        <el-col style="width: 100%;margin-right: 20px;margin-bottom: 20px">-->
+<!--&lt;!&ndash;          <el-card style="height: 150px">&ndash;&gt;-->
 
+
+<!--&lt;!&ndash;          </el-card>&ndash;&gt;-->
+<!--        </el-col>-->
+      </el-row>
+      <el-row>
+        <el-col style="width: 100%;margin-right: 20px">
+          <el-card style="height: 590px">
+
+
+          </el-card>
+        </el-col>
+      </el-row>
+    </el-card>
   </div>
 </template>
 
@@ -11,7 +28,7 @@ import axios from 'axios'; // 导入 Axios
 
 export default{
   // eslint-disable-next-line vue/multi-word-component-names
-  name:"EconomyHotNews",
+  name:"EconomyNews",
   components:{},
   data() {
     return {

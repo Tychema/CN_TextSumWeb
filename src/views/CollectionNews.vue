@@ -2,12 +2,12 @@
   <div>
     <el-card style="height: 800px">
       <el-row>
-        <el-col style="width: 100%;margin-right: 20px;margin-bottom: 20px">
-          <el-card style="height: 150px">
+<!--        <el-col style="width: 100%;margin-right: 20px;margin-bottom: 20px">-->
+<!--          <el-card style="height: 150px">-->
 
 
-          </el-card>
-        </el-col>
+<!--          </el-card>-->
+<!--        </el-col>-->
       </el-row>
       <el-row>
         <el-col style="width: 100%;margin-right: 20px">
