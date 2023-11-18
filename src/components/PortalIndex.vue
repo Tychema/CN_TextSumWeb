@@ -1,33 +1,39 @@
 <template>
-  <el-container>
-    <el-header>
+  <el-container style="height: 100%;">
+    <el-header class="header1" style="height: 50px;width: 100%;">
+      <div class="block" style="float: right; margin-top: 0px; margin-right: 15px;">
+        <el-avatar :size="35" :src="circleUrl" style="margin-top: 7px"></el-avatar>
+      </div>
+    </el-header >
+    <el-header class="header2" style="width: 100%;">
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-              <el-menu-item index="1" v-on:click="toAllNews">首页</el-menu-item>
+              <el-menu-item index="1" v-on:click="toAllNews">&nbsp;&nbsp;&nbsp;首页&nbsp;&nbsp;&nbsp;</el-menu-item>
+              <el-menu-item index="AllNews" v-on:click="toAllNews">金融新闻</el-menu-item>
+              <el-menu-item index="CompanySearch" v-on:click="toCompanySearch">公司搜索</el-menu-item>
+              <el-menu-item index="PointNews" v-on:click="toPointNews">公司动态</el-menu-item>
+              <el-menu-item index="CollectionNews" v-on:click="toCollectionNews">收藏新闻</el-menu-item>
+              <el-menu-item index="History" v-on:click="toHistory">历史记录</el-menu-item>
 <!--                <i class="el-icon-user" ></i>-->
-                <div class="block" style="float: right; margin-top: 0px; margin-right: 15px;height: 60px"><el-avatar :size="35" :src="circleUrl" style="margin-top: 10px"></el-avatar></div>
+
             </el-menu>
     </el-header>
-    <el-container>
-      <el-aside width="150px">
-        <el-menu class="el-menu-vertical-demo" >
-<!--        <el-menu class="el-menu-vertical-demo" @select="handleMenuSelect">-->
-<!--        <el-menu :default-active="activeMenu" class="el-menu-vertical-demo" @select="handleMenuSelect">-->
-          <el-menu-item index="AllNews" v-on:click="toAllNews">所有新闻</el-menu-item>
-          <el-menu-item index="CompanySearch" v-on:click="toCompanySearch">公司搜索</el-menu-item>
-          <el-menu-item index="PointNews" v-on:click="toPointNews">关注的新闻</el-menu-item>
-          <el-menu-item index="CollectionNews" v-on:click="toCollectionNews">收藏新闻</el-menu-item>
-          <el-menu-item index="History" v-on:click="toHistory">历史记录</el-menu-item>
-          <el-menu-item index="TextSummary" v-on:click="toTextSummary">文本摘要</el-menu-item>
-          <!-- 添加更多菜单项 -->
-        </el-menu>
-      </el-aside>
+<!--    <el-container>-->
+<!--      <el-aside width="150px">-->
+<!--        <el-menu class="el-menu-vertical-demo" >-->
+<!--&lt;!&ndash;        <el-menu class="el-menu-vertical-demo" @select="handleMenuSelect">&ndash;&gt;-->
+<!--&lt;!&ndash;        <el-menu :default-active="activeMenu" class="el-menu-vertical-demo" @select="handleMenuSelect">&ndash;&gt;-->
+
+<!--&lt;!&ndash;          <el-menu-item index="TextSummary" v-on:click="toTextSummary">文本摘要</el-menu-item>&ndash;&gt;-->
+<!--          &lt;!&ndash; 添加更多菜单项 &ndash;&gt;-->
+<!--        </el-menu>-->
+<!--      </el-aside>-->
       <el-container>
-        <el-main>
+        <el-main >
           <router-view></router-view>
         </el-main>
-        <el-footer>Footer</el-footer>
+        <el-footer></el-footer>
       </el-container>
-    </el-container>
+<!--    </el-container>-->
   </el-container>
 <!--  <el-container>-->
 <!--    <el-header>-->
@@ -136,25 +142,41 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
-.el-header, .el-footer {
-  background-color: #B3C0D1;
+.header1{
+  background-color: #002E5D;
+  color: white;
+  text-align: center;
+  line-height: 40px;
+}
+.custom-header {
+  height: 40px !important; /* 使用 !important 覆盖之前的样式 */
+}
+.header2{
+  background-color: white;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
+}
+.el-footer {
+  background-color: white;
   color: #333;
   text-align: center;
   line-height: 60px;
 }
 
-.el-aside {
-  background-color: #D3DCE6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
+/*.el-aside {*/
+/*  background-color: #D3DCE6;*/
+/*  color: #333;*/
+/*  text-align: center;*/
+/*  line-height: 200px;*/
+/*}*/
 
 .el-main {
   background-color: #E9EEF3;
   color: #333;
   text-align: center;
   line-height: initial;
+  padding: 0px !important;
 }
 
 body > .el-container {
@@ -169,4 +191,20 @@ body > .el-container {
 .el-container:nth-child(7) .el-aside {
   line-height: 320px;
 }
+.el-menu-demo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 如果需要调整间距，可以添加 margin 或 padding 属性 */
+.el-menu-item {
+  margin: 0 10px;
+}
+.el-menu-item.is-active{
+  color: white !important;
+  background: linear-gradient(to bottom, #DFD37F, #CDA94A) !important;
+  border-bottom: none !important;
+}
+
 </style>

@@ -1,77 +1,140 @@
 <template>
-  <div>
-    <el-card style="height: 660px">
-      <el-row>
-        <el-col style="width: 32%;margin-right: 20px">
-          <el-card style="height: 620px">
-            <div>
-              <el-table
-                  :data="showData1"
-                  style="width: 100%"
-                  @row-click="handleRowClick"
-              >
-                <el-table-column prop="title" label="Positive News"></el-table-column>
-                <el-table-column prop="datetime" label="Date" :width="100"></el-table-column>
-              </el-table>
-              <el-pagination
-                  background
-                  layout="prev, pager, next"
-                  @size-change="handleSizeChange"
-                  @current-change="handleCurrentChange1"
-                  :current-page="currentPage1"
-                  :page-size="pageSize"
-                  :total="totalNews1"
-              ></el-pagination>
-            </div>
-          </el-card>
-        </el-col>
-        <el-col style="width: 32%;margin-right: 20px">
-          <el-card style="height: 620px">
-            <div>
-              <el-table
-                  :data="showData2"
-                  style="width: 100%"
-                  @row-click="handleRowClick"
-              >s
-                <el-table-column prop="title" label="Normal News"></el-table-column>
-                <el-table-column prop="datetime" label="Date" :width="100"></el-table-column>
-              </el-table>
-              <el-pagination
-                  background
-                  layout="prev, pager, next"
-                  @size-change="handleSizeChange"
-                  @current-change="handleCurrentChange2"
-                  :current-page="currentPage2"
-                  :page-size="pageSize"
-                  :total="totalNews2"
-              ></el-pagination>
-            </div>
-          </el-card>
-        </el-col>
-        <el-col style="width: 33%">
-          <el-card style="height: 620px">
-            <div>
-              <el-table
-                  :data="showData3"
-                  style="width: 100%"
-                  @row-click="handleRowClick"
-              >s
-                <el-table-column prop="title" label="Negetive News"></el-table-column>
-                <el-table-column prop="datetime" label="Date" :width="100"></el-table-column>
-              </el-table>
-              <el-pagination
-                  background
-                  layout="prev, pager, next"
-                  @size-change="handleSizeChange"
-                  @current-change="handleCurrentChange3"
-                  :current-page="currentPage3"
-                  :page-size="pageSize"
-                  :total="totalNews3"
-              ></el-pagination>
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
+  <div class="background-container">
+    <el-card style="height:100%;width: 60%;margin-left: 19%" :body-style="{height: '711px'}">
+      <template>
+        <el-tabs v-model="activeName">
+          <el-tab-pane label="Positive News" name="first">
+            <el-card style="height: 620px">
+              <div>
+                <el-table
+                    :data="showData1"
+                    style="width: 100%;height: 550px;"
+                >
+                  <el-table-column prop="title" label="新闻">
+                    <template slot-scope="scope1">
+                      <a :href="scope1.row.url" target="_blank" rel="noopener noreferrer" style="color: black; text-decoration: none;" @click="clickHerf(scope1.row)">
+                        {{ scope1.row.title }}
+                      </a>
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="datetime" label="时间" :width="100"></el-table-column>
+                  <el-table-column :width="50">
+                    <template slot-scope="scope1">
+                      <el-button style="margin: 0px" class="button"
+                                 @click="handleCollection1(scope1.row,scope1.$index)"
+                                 :icon="scope1.row.icon"
+                                 circle
+                                 ref="collectionButton">
+
+                      </el-button>
+                    </template>
+                  </el-table-column>
+                </el-table>
+                <el-pagination
+                    background
+                    layout="prev, pager, next"
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange1"
+                    :current-page="currentPage1"
+                    :page-size="pageSize"
+                    :total="totalNews1"
+                    style="float: bottom"
+                ></el-pagination>
+              </div>
+            </el-card>
+          </el-tab-pane>
+          <el-tab-pane label="Normal News" name="second">
+            <el-card style="height: 620px">
+              <div>
+                <el-table
+                    :data="showData2"
+                    style="width: 100%"
+                >
+                  <el-table-column prop="title" label="新闻">
+                    <template slot-scope="scope2">
+                      <a :href="scope2.row.url" target="_blank" rel="noopener noreferrer" style="color: black; text-decoration: none;" @click="clickHerf(scope1.row)">
+                        {{ scope2.row.title }}
+                      </a>
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="datetime" label="时间" :width="100"></el-table-column>
+                  <el-table-column :width="50">
+                    <template slot-scope="scope2">
+                      <el-button style="margin: 0px" class="button"
+                                 @click="handleCollection1(scope2.row,scope2.$index)"
+                                 :icon="scope2.row.icon"
+                                 circle
+                                 ref="collectionButton">
+
+                      </el-button>
+                    </template>
+                  </el-table-column>
+                </el-table>
+                <el-pagination
+                    background
+                    layout="prev, pager, next"
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange2"
+                    :current-page="currentPage2"
+                    :page-size="pageSize"
+                    :total="totalNews2"
+                ></el-pagination>
+              </div>
+            </el-card>
+          </el-tab-pane>
+          <el-tab-pane label="Negetive News" name="third">
+            <el-card style="height: 620px">
+              <div>
+                <el-table
+                    :data="showData3"
+                    style="width: 100%"
+                >
+                  <el-table-column prop="title" label="新闻">
+                    <template slot-scope="scope3">
+                      <a :href="scope3.row.url" target="_blank" rel="noopener noreferrer" style="color: black; text-decoration: none;" @click="clickHerf(scope1.row)">
+                        {{ scope3.row.title }}
+                      </a>
+                    </template>
+                  </el-table-column>
+                  <el-table-column prop="datetime" label="时间" :width="100"></el-table-column>
+                  <el-table-column :width="50">
+                    <template slot-scope="scope3">
+                      <el-button style="margin: 0px" class="button"
+                                 @click="handleCollection1(scope3.row,scope3.$index)"
+                                 :icon="scope3.row.icon"
+                                 circle
+                                 ref="collectionButton">
+
+                      </el-button>
+                    </template>
+                  </el-table-column>
+                </el-table>
+                <el-pagination
+                    background
+                    layout="prev, pager, next"
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange3"
+                    :current-page="currentPage3"
+                    :page-size="pageSize"
+                    :total="totalNews3"
+                ></el-pagination>
+              </div>
+            </el-card>
+          </el-tab-pane>
+
+        </el-tabs>
+      </template>
+<!--      <el-row>-->
+<!--        <el-col style="width: 32%;margin-right: 20px">-->
+
+<!--        </el-col>-->
+<!--        <el-col style="width: 32%;margin-right: 20px">-->
+
+<!--        </el-col>-->
+<!--        <el-col style="width: 33%">-->
+
+<!--        </el-col>-->
+<!--      </el-row>-->
     </el-card>
   </div>
 </template>
@@ -107,6 +170,15 @@ export default{
       showData1:[],
       showData2:[],
       showData3:[],
+      activeName: 'first',
+      iconOnState: "el-icon-star-on",
+      iconOffState: "el-icon-star-off",
+      PositiveiconState :["el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off",],
+      NormaliconState : ["el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off",],
+      NegetiveiconState :["el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off","el-icon-star-off",],
+      PositivecollectionState :[0,0,0,0,0,0,0,0],
+      NormalcollectionState : [0,0,0,0,0,0,0,0],
+      NegetivecollectionState :[0,0,0,0,0,0,0,0],
 
     }
   },
@@ -132,9 +204,9 @@ export default{
             if (data["state"] === "200") {
               console.log(data)
               // 如果状态码为 200，表示成功获取数据
-              var tableData1 = data["sentiment2_news"].map(item => ({title: item.summary, company: item.company, datetime: item.datetime, url: item.url}));
-              var tableData2 = data["sentiment1_news"].map(item => ({title: item.summary, company: item.company, datetime: item.datetime, url: item.url}));
-              var tableData3 = data["sentiment0_news"].map(item => ({title: item.summary, company: item.company, datetime: item.datetime, url: item.url}));
+              var tableData1 = data["sentiment2_news"].map(item => ({title: item.summary,company:item.company,datetime:item.datetime,url:item.url,id:item.id,icon:"el-icon-star-off",collectionState:0,tableName:2}));
+              var tableData2 = data["sentiment1_news"].map(item => ({title: item.summary,company:item.company,datetime:item.datetime,url:item.url,id:item.id,icon:"el-icon-star-off",collectionState:0,tableName:2}));
+              var tableData3 = data["sentiment0_news"].map(item => ({title: item.summary,company:item.company,datetime:item.datetime,url:item.url,id:item.id,icon:"el-icon-star-off",collectionState:0,tableName:2}));
               console.log(tableData2.length)
               if(tableData1.length==0 && tableData2.length==0 && tableData3.length==0){
                 this.$message.error("您没有关注任何公司");
@@ -175,15 +247,43 @@ export default{
       //修改当前每页的数据行数//数据重新分配
       this.getPageInfo()
     },
-
-    handleRowClick(row) {
-      // 处理点击标题跳转到 URL
-      window.open(row.url, this.showData1.url);
-    },
     formatTooltip(val) {
       return val / 100;
     },
     // 获取当前页的数据信息
+    // getPageInfo(){
+    //   //清空pageTicket中的数据
+    //   //const showDataKey = `showData${tablename}`;
+    //   //const tableDataKey = `tableData${tablename}`;
+    //   this.showData1=[];
+    //   this.showData2=[];
+    //   this.showData3=[];
+    //   // 获取当前页的数据
+    //   // console.log("this.showData1")
+    //   // console.log(this.tableData1)
+    //   for(let i=(this.currentPage1-1)*this.pageSize;i<this.totalNews1;i++){
+    //     //把遍历的数据添加到showData1里面
+    //     this.showData1.push(this.tableData1[i]);
+    //     // console.log(this.showData1)
+    //     //判断是否达到一页的要求
+    //     if(this.showData1.length===this.pageSize) break;
+    //   }
+    //   for(let i=(this.currentPage2-1)*this.pageSize;i<this.totalNews2;i++){
+    //     //把遍历的数据添加到showData1里面
+    //     this.showData2.push(this.tableData2[i]);
+    //     //console.log(this.showData2)
+    //     //判断是否达到一页的要求
+    //     if(this.showData2.length===this.pageSize) break;
+    //   }
+    //   for(let i=(this.currentPage3-1)*this.pageSize;i<this.totalNews3;i++){
+    //     //把遍历的数据添加到showData1里面
+    //     this.showData3.push(this.tableData3[i]);
+    //     //console.log(this.showData3)
+    //     //判断是否达到一页的要求
+    //     if(this.showData3.length===this.pageSize) break;
+    //   }
+    //
+    // },
     getPageInfo(){
       //清空pageTicket中的数据
       //const showDataKey = `showData${tablename}`;
@@ -191,31 +291,245 @@ export default{
       this.showData1=[];
       this.showData2=[];
       this.showData3=[];
+      var userid=1;
+      var whetherCollectUrl=`http://localhost:8000/collectnews/whethercollect?userid=${userid}&newid=`;
       // 获取当前页的数据
       // console.log("this.showData1")
       // console.log(this.tableData1)
       for(let i=(this.currentPage1-1)*this.pageSize;i<this.totalNews1;i++){
         //把遍历的数据添加到showData1里面
         this.showData1.push(this.tableData1[i]);
-        // console.log(this.showData1)
+        var whetherCollectUrl1=whetherCollectUrl+this.tableData1[i]["id"]
+        axios.post(whetherCollectUrl1)
+            .then(response => {
+              // 从响应中提取标题数据
+              var data=response.data;
+              // console.log(data)
+              // console.log(data["state"])
+              if (data["state"] === "201") {
+                this.showData1[i%this.pageSize].collectionState=1;
+                this.showData1[i%this.pageSize].icon='el-icon-star-on';
+              }else if(data["state"] === "200"){
+                this.showData1[i%this.pageSize].collectionState=0;
+                this.showData1[i%this.pageSize].icon='el-icon-star-off';
+              }
+              else{
+                this.$message.error("查询是否收藏该新闻发生错误");
+              }
+              console.log()
+            })
+            .catch(error => {
+              console.error('请求出错:', error);
+            });
         //判断是否达到一页的要求
         if(this.showData1.length===this.pageSize) break;
       }
+      console.log(this.showData1)
       for(let i=(this.currentPage2-1)*this.pageSize;i<this.totalNews2;i++){
         //把遍历的数据添加到showData1里面
         this.showData2.push(this.tableData2[i]);
-        //console.log(this.showData2)
+        var whetherCollectUrl2=whetherCollectUrl+this.tableData2[i]["id"]
+        axios.post(whetherCollectUrl2)
+            .then(response => {
+              // 从响应中提取标题数据
+              var data=response.data;
+              // console.log(data)
+              // console.log(data["state"])
+              if (data["state"] === "201") {
+                this.showData2[i%this.pageSize].collectionState=1;
+                this.showData2[i%this.pageSize].icon='el-icon-star-on';
+              }else if(data["state"] === "200"){
+                this.showData2[i%this.pageSize].collectionState=0;
+                this.showData2[i%this.pageSize].icon='el-icon-star-off';
+              }
+              else{
+                this.$message.error("查询是否收藏该新闻发生错误");
+              }
+            })
+            .catch(error => {
+              console.error('请求出错:', error);
+            });
         //判断是否达到一页的要求
         if(this.showData2.length===this.pageSize) break;
       }
       for(let i=(this.currentPage3-1)*this.pageSize;i<this.totalNews3;i++){
         //把遍历的数据添加到showData1里面
         this.showData3.push(this.tableData3[i]);
-        //console.log(this.showData3)
+        var whetherCollectUrl3=whetherCollectUrl+this.tableData3[i]["id"]
+        axios.post(whetherCollectUrl3)
+            .then(response => {
+              // 从响应中提取标题数据
+              var data=response.data;
+              // console.log(data)
+              // console.log(data["state"])
+              if (data["state"] === "201") {
+                this.showData3[i%this.pageSize].collectionState=1;
+                this.showData3[i%this.pageSize].icon='el-icon-star-on';
+              }else if(data["state"] === "200"){
+                this.showData3[i%this.pageSize].collectionState=0;
+                this.showData3[i%this.pageSize].icon='el-icon-star-off';
+              }
+              else{
+                this.$message.error("查询是否收藏该新闻发生错误");
+              }
+            })
+            .catch(error => {
+              console.error('请求出错:', error);
+            });
         //判断是否达到一页的要求
         if(this.showData3.length===this.pageSize) break;
       }
 
+    },
+    handleCollection1(row,index){
+      var userid=1;
+      console.log(row.id)
+      var newsid=row.id;
+      var newsCollectState = row.collectionState;
+      const collectionUrl = `http://localhost:8000/collectnews/collectnewsById?userid=${userid}&newid=${newsid}`;
+      const deleterCollectionUrl = `http://localhost:8000/collectnews/deletecollect?userid=${userid}&newid=${newsid}`;
+      if(newsCollectState===0){
+        axios.post(collectionUrl)
+            .then(response => {
+              // 从响应中提取标题数据
+              var data=response.data;
+              console.log(index)
+              console.log(data["state"])
+              if (data["state"] === "200") {
+                this.$message({message: '收藏成功', type: 'success'});
+                this.loadData()
+              }
+              else if(data["state"] === "202"){
+                this.$message.error("您已经收藏该新闻");
+              }else{
+                this.$message.error("发生错误");
+              }
+
+            }).catch(error => {console.error('请求出错:', error);});
+      }else{
+        axios.post(deleterCollectionUrl)
+            .then(response => {
+              // 从响应中提取标题数据
+              var data=response.data;
+              console.log(data)
+              console.log(data["state"])
+              if (data["state"] === "200") {
+                this.$message({message: '取消收藏成功', type: 'success'});
+                this.loadData();
+              }else if(data["state"] === "202"){
+                this.$message.error("您还未收藏该新闻");
+              }
+              else{
+                this.$message.error("发生错误");
+              }
+            }).catch(error => {console.error('请求出错:', error);});
+      }
+    },    handleCollection2(row,index){
+      var userid=1;
+      console.log(row.id)
+      var newsid=row.id;
+      var newsCollectState = row.collectionState;
+      console.log(row.collectionState)
+      const collectionUrl = `http://localhost:8000/collectnews/collectnewsById?userid=${userid}&newid=${newsid}`;
+      const deleterCollectionUrl = `http://localhost:8000/collectnews/deletecollect?userid=${userid}&newid=${newsid}`;
+      if(newsCollectState===0){
+        console.log(collectionUrl);
+        axios.post(collectionUrl)
+            .then(response => {
+              // 从响应中提取标题数据
+              var data=response.data;
+              console.log(index)
+              console.log(data["state"])
+              if (data["state"] === "200") {
+                this.$message({message: '收藏成功', type: 'success'});
+                this.loadData()
+              }
+              else if(data["state"] === "202"){
+                this.$message.error("您已经收藏该新闻");
+              }else{
+                this.$message.error("发生错误");
+              }
+
+            }).catch(error => {console.error('请求出错:', error);});
+      }else{
+        console.log(deleterCollectionUrl);
+        axios.post(deleterCollectionUrl)
+            .then(response => {
+              // 从响应中提取标题数据
+              var data=response.data;
+              console.log(data)
+              console.log(data["state"])
+              if (data["state"] === "200") {
+                this.$message({message: '取消收藏成功', type: 'success'});
+                this.loadData();
+              }else if(data["state"] === "202"){
+                this.$message.error("您还未收藏该新闻");
+              }
+              else{
+                this.$message.error("发生错误");
+              }
+            }).catch(error => {console.error('请求出错:', error);});
+      }
+    },
+    handleCollection3(row,index){
+      var userid=1;
+      console.log(row.id)
+      var newsid=row.id;
+      var newsCollectState = row.collectionState;
+      const collectionUrl = `http://localhost:8000/collectnews/collectnewsById?userid=${userid}&newid=${newsid}`;
+      const deleterCollectionUrl = `http://localhost:8000/collectnews/deletecollect?userid=${userid}&newid=${newsid}`;
+      if(newsCollectState===0){
+        axios.post(collectionUrl)
+            .then(response => {
+              // 从响应中提取标题数据
+              var data=response.data;
+              console.log(index)
+              console.log(data["state"])
+              if (data["state"] === "200") {
+                this.$message({message: '收藏成功', type: 'success'});
+                this.loadData()
+              }
+              else if(data["state"] === "202"){
+                this.$message.error("您已经收藏该新闻");
+              }else{
+                this.$message.error("发生错误");
+              }
+
+            }).catch(error => {console.error('请求出错:', error);});
+      }else{
+        axios.post(deleterCollectionUrl)
+            .then(response => {
+              // 从响应中提取标题数据
+              var data=response.data;
+              console.log(data)
+              console.log(data["state"])
+              if (data["state"] === "200") {
+                this.$message({message: '取消收藏成功', type: 'success'});
+                this.loadData();
+              }else if(data["state"] === "202"){
+                this.$message.error("您还未收藏该新闻");
+              }
+              else{
+                this.$message.error("发生错误");
+              }
+            }).catch(error => {console.error('请求出错:', error);});
+      }
+    },clickHerf(row){
+      var clickTime=new Date();
+      var userid=1;
+      var historyUrl=`http://localhost:8000/history/historynewsById?userid=${userid}&newid=${row.id}&clickTime=${clickTime}`;
+      axios.post(historyUrl)
+          .then(response => {
+            // 从响应中提取标题数据
+            var data=response.data;
+            console.log(data["state"])
+            if (data["state"] === "200") {
+              console.log(data)
+            } else{
+              this.$message.error("发生错误");
+            }
+
+          }).catch(error => {console.error('请求出错:', error);});
     }
   }
 }
@@ -227,6 +541,14 @@ function sleep(ms) {
 </script>
 
 <style>
+.background-container {
+  background-image: url('../assets/images/back70.png'); /* Set the background image path */
+  background-size: cover; /* Optional: Adjust background size */
+  background-position: center; /* Optional: Adjust background position */
+  height: 100%; /* Set the desired height */
+  width: 100%;
+  /* Add other styles as needed */
+}
 .rounded-input {
   width: 95%;
   border-radius: 100px; /* 添加圆角样式 */
