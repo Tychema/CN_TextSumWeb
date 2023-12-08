@@ -3,22 +3,22 @@
     <el-card style="height:100%;width: 60%;margin-left: 19%" :body-style="{height: '711px'}">
       <template>
         <el-tabs v-model="activeName">
-          <el-tab-pane label="Positive News" name="first">
+          <el-tab-pane label="正面新闻" name="first">
             <el-card style="height: 620px">
               <div>
                 <el-table
                     :data="showData1"
                     style="width: 100%;height: 550px;"
                 >
-                  <el-table-column prop="title" label="新闻">
+                  <el-table-column prop="title" label="新闻" :width="600">
                     <template slot-scope="scope1">
                       <a :href="scope1.row.url" target="_blank" rel="noopener noreferrer" style="color: black; text-decoration: none;" @click="clickHerf(scope1.row)">
                         {{ scope1.row.title }}
                       </a>
                     </template>
                   </el-table-column>
-                  <el-table-column prop="datetime" label="时间" :width="100"></el-table-column>
-                  <el-table-column :width="50">
+                  <el-table-column prop="datetime" label="时间" :width="200"></el-table-column>
+                  <el-table-column :width="100" label="收藏" >
                     <template slot-scope="scope1">
                       <el-button style="margin: 0px" class="button"
                                  @click="handleCollection1(scope1.row,scope1.$index)"
@@ -43,22 +43,22 @@
               </div>
             </el-card>
           </el-tab-pane>
-          <el-tab-pane label="Normal News" name="second">
+          <el-tab-pane label="普通新闻" name="second">
             <el-card style="height: 620px">
               <div>
                 <el-table
                     :data="showData2"
                     style="width: 100%"
                 >
-                  <el-table-column prop="title" label="新闻">
+                  <el-table-column prop="title" label="新闻" :width="600">
                     <template slot-scope="scope2">
                       <a :href="scope2.row.url" target="_blank" rel="noopener noreferrer" style="color: black; text-decoration: none;" @click="clickHerf(scope1.row)">
                         {{ scope2.row.title }}
                       </a>
                     </template>
                   </el-table-column>
-                  <el-table-column prop="datetime" label="时间" :width="100"></el-table-column>
-                  <el-table-column :width="50">
+                  <el-table-column prop="datetime" label="时间" :width="200"></el-table-column>
+                  <el-table-column :width="100" label="收藏">
                     <template slot-scope="scope2">
                       <el-button style="margin: 0px" class="button"
                                  @click="handleCollection1(scope2.row,scope2.$index)"
@@ -82,7 +82,7 @@
               </div>
             </el-card>
           </el-tab-pane>
-          <el-tab-pane label="Negetive News" name="third">
+          <el-tab-pane label="负面新闻" name="third">
             <el-card style="height: 620px">
               <div>
                 <el-table
@@ -97,7 +97,7 @@
                     </template>
                   </el-table-column>
                   <el-table-column prop="datetime" label="时间" :width="100"></el-table-column>
-                  <el-table-column :width="50">
+                  <el-table-column :width="50" label="收藏">
                     <template slot-scope="scope3">
                       <el-button style="margin: 0px" class="button"
                                  @click="handleCollection1(scope3.row,scope3.$index)"

@@ -18,6 +18,12 @@ export default new Router({
 			children:[
 				{
 					// 子路由不加斜杠   这里同时使用了命名路由的功能
+					name: "Introduction",
+					path: "Introduction",
+					component: () => import("../views/Introduction.vue"),
+				},
+				{
+					// 子路由不加斜杠   这里同时使用了命名路由的功能
 					name: "AllNews",
 					path: "AllNews",
 					component: () => import("../views/AllNews.vue"),
@@ -44,20 +50,14 @@ export default new Router({
 					// 子路由不加斜杠   这里同时使用了命名路由的功能
 					name: "History",
 					path: "History",
-					component: () => import("../views/History.vue"),
-				},
-				{
-					// 子路由不加斜杠   这里同时使用了命名路由的功能
-					name: "TextSummary",
-					path: "TextSummary",
-					component: () => import("../views/TextSummary.vue"),
-				},
-				{
-					// 子路由不加斜杠   这里同时使用了命名路由的功能
-					name: "index",
-					path: "index",
-					component: () => import("../views/Index.vue"),
-				},
+					component: () => import("../views/History.vue")},
+				// },
+				// {
+				// 	// 子路由不加斜杠   这里同时使用了命名路由的功能
+				// 	name: "TextSummary",
+				// 	path: "TextSummary",
+				// 	component: () => import("../views/TextSummary.vue"),
+				// },
 
 			]
 		},

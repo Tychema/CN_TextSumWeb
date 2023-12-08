@@ -1,18 +1,33 @@
 <template>
   <el-container style="height: 100%;">
     <el-header class="header1" style="height: 50px;width: 100%;">
+      <el-row><el-col style="width: 50%">
+      <div style="width: 200px;margin-left: 300px;margin-right: 100px">
+        <el-row>
+          <el-col style="width: 50%">
+            <el-image :src="logoUrl" style="width: 50px;height: 50px"></el-image>
+          </el-col>
+          <el-col style="width: 50%">
+            <h4 style="width: 100px;margin-top: 8px">金融快讯系统</h4>
+          </el-col>
+        </el-row>
+      </div>
+      </el-col >
+        <el-col style="width: 50%">
       <div class="block" style="float: right; margin-top: 0px; margin-right: 15px;">
         <el-avatar :size="35" :src="circleUrl" style="margin-top: 7px"></el-avatar>
       </div>
+        </el-col>
+      </el-row>
     </el-header >
     <el-header class="header2" style="width: 100%;">
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-              <el-menu-item index="1" v-on:click="toAllNews">&nbsp;&nbsp;&nbsp;首页&nbsp;&nbsp;&nbsp;</el-menu-item>
               <el-menu-item index="AllNews" v-on:click="toAllNews">金融新闻</el-menu-item>
               <el-menu-item index="CompanySearch" v-on:click="toCompanySearch">公司搜索</el-menu-item>
               <el-menu-item index="PointNews" v-on:click="toPointNews">公司动态</el-menu-item>
               <el-menu-item index="CollectionNews" v-on:click="toCollectionNews">收藏新闻</el-menu-item>
               <el-menu-item index="History" v-on:click="toHistory">历史记录</el-menu-item>
+              <el-menu-item index="Introduction" v-on:click="toIntroduction">网站介绍</el-menu-item>
 <!--                <i class="el-icon-user" ></i>-->
 
             </el-menu>
@@ -80,6 +95,7 @@
 </template>
 
 <script>
+import logoUrl from '@/assets/logo.png'
 export default {
   name: 'ProtalIndex',
   components: {
@@ -88,9 +104,8 @@ export default {
     return {
       activeIndex: '1',
       activeIndex2: '1',
-      circleUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",
-      squareUrl: "https://cube.elemecdn.com/9/c2/f0ee8a3c7c9638a54940382568c9dpng.png",
-      sizeList: ["large", "medium", "small"]
+      sizeList: ["large", "medium", "small"],
+      logoUrl :logoUrl
     };
   },
   methods: {
@@ -99,6 +114,8 @@ export default {
     },
     toCompanySearch() {
       this.$router.push('/CompanySearch')
+    },    toIntroduction() {
+      this.$router.push('/Introduction')
     },
     toAllNews() {
       this.$router.push('/AllNews')
